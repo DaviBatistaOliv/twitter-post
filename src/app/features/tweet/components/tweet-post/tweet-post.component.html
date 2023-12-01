@@ -1,0 +1,77 @@
+<div class="tw_post tw__padding_base d-flex" [id]="tweet.id">
+  <tw-avatar class="me-2 pt-1" [src]="tweet.avatar"></tw-avatar>
+  <div class="d-flex flex-column w-100">
+    <div class="tw_post__header d-flex w-100">
+      <div class="flex-grow-1">
+        <label class="fw-bold"> {{ tweet.nikename }} </label>
+        <span> @{{ tweet.username }} </span>
+        <span class="mx-1 fw-bold">·</span>
+        <span>{{ tweet.timestamp | timestamp }}</span>
+      </div>
+
+      <tw-button
+        size="btn-sm"
+        classlist="rounded-circle"
+        (onclick)="smModal.show()"
+      >
+        <img src="/assets/img/trash_icon.svg" width="16" alt="" />
+      </tw-button>
+    </div>
+    <div
+      class="tw_post__content text-wrap"
+      style="width: 30rem"
+      [innerHTML]="tweet.post"
+    ></div>
+  </div>
+</div>
+
+<div
+  bsModal
+  #smModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-sizes-name2"
+  style="top: initial !important"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content border-0">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name2" class="modal-title pull-left">
+          Excluir Tweet?
+        </h4>
+        <button
+          type="button"
+          class="btn-close close pull-right"
+          aria-label="Close"
+          (click)="smModal.hide()"
+        >
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Isso não pode ser desfeito e será removido do seu perfil, da linha do
+        tempo de todas as contas que seguem você e dos resultados de pesquisa do
+        Twitter.
+
+        <div class="d-grid gap-2 mt-4">
+          <tw-button
+            classlist=" rounded-pill w-100 fw-bold"
+            color="danger"
+            (onclick)="onDelete()"
+          >
+            excluir
+          </tw-button>
+
+          <tw-button
+            color="light"
+            classlist="rounded-pill w-100 fw-bold"
+            (onclick)="smModal.hide()"
+          >
+            cancelar
+          </tw-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

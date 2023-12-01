@@ -1,0 +1,32 @@
+<div class="tw_tweetBox px-0">
+  <form class="tw_tweetBox__form">
+    <div class="d-flex">
+      <tw-avatar class="me-2" [src]="avatar"></tw-avatar>
+      <div class="w-100 pt-2">
+        <tw-input-areatext
+          [control]="control"
+          [maxlength]="130"
+          placeholder="O que está acontecendo ?"
+        ></tw-input-areatext>
+        <span class="badge rounded-pil bg-light text-dark mb-4">
+          Everyone can reply
+        </span>
+        <div class="border-bottom w-100 mb-3"></div>
+        <div class="d-flex">
+          <div class="flex-grow-1"></div>
+          <div>
+            <span class="me-3">{{ control.value.length }}/130</span>
+            <tw-button
+              color="primary"
+              classlist="rounded-pill"
+              [disabled]="control.invalid"
+              (onclick)="onTweet()"
+            >
+              Tweet
+            </tw-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

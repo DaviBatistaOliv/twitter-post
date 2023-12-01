@@ -1,0 +1,13 @@
+:host {
+  width: 100%;
+
+  textarea {
+    width: 100%;
+    border: none;
+    border-left: 0.1px solid transparent;
+    position: relative;
+    z-index: 1;
+    outline: none;
+    resize: none;
+  }
+}

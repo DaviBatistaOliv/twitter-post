@@ -1,0 +1,39 @@
+<div class="tw_home__sidebar">
+  <div class="d-flex flex-row-reverse">
+    <img src="/assets/img/logo_icon.svg" width="32" alt="Logo twitter" />
+  </div>
+</div>
+<div class="tw_home__feed">
+  <div class="tw_home__feed_header tw__border--bottom-primary tw__padding_base">
+    <div class="d-flex justify-content-between mb-4">
+      <h2 class="tw__title m-0 flex-grow-1">Página inicial</h2>
+      <img src="/assets/img/start_icon.svg" width="20" alt="" />
+    </div>
+    <tw-tweet-box (tweet)="onTweeted($event)"> </tw-tweet-box>
+  </div>
+
+  <ng-container *ngIf="tweets$ | async as tweets; else loading">
+    <ng-container
+      [ngTemplateOutlet]="tweets.length ? listTweets : emptyTweets"
+      [ngTemplateOutletContext]="{ tweets: tweets }"
+    >
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #listTweets let-tweets="tweets">
+  <tw-tweet-list (delete)="onDeleted($event)" [tweets]="tweets$ | async">
+  </tw-tweet-list>
+</ng-template>
+
+<ng-template #emptyTweets>
+  <div class="d-flex justify-content-center mt-4">
+    <h3 class="fw-bold">Você ainda não tem tweets</h3>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="d-flex justify-content-center py-4">
+    <tw-loading-circle></tw-loading-circle>
+  </div>
+</ng-template>
